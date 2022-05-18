@@ -136,22 +136,24 @@ function newGame() {
 }
 
 function gameOver() {
-    let gameOver = document.querySelector(".state-nodisplay");
-    gameOver.classList.remove("state-nodisplay");
+    if(document.querySelector(".state-nodisplay") != null){
+        let gameOver = document.querySelector(".state-nodisplay");
+        gameOver.classList.remove("state-nodisplay");
 
-    const game = document.createElement("div");
-    game.textContent = "GAME";/*palabra[i].toUpperCase()*/
+        const game = document.createElement("div");
+        game.textContent = "GAME";/*palabra[i].toUpperCase()*/
 
-    const over = document.createElement("div");
-    over.textContent = "OVER";/*palabra[i].toUpperCase()*/
+        const over = document.createElement("div");
+        over.textContent = "OVER";/*palabra[i].toUpperCase()*/
 
-    gameOver.append(game);
-    gameOver.append(over);
+        gameOver.append(game);
+        gameOver.append(over);
 
-    gameOver.classList.add("stateAnimation", "gameOver")
+        gameOver.classList.add("stateAnimation", "gameOver")
 
-    window.endgame = true;
-    play("audio/lose.mp3")
+        window.endgame = true;
+        play("audio/lose.mp3")
+    }
     return;
 }
 
@@ -240,21 +242,23 @@ function drawGame() {
 }
 
 function youWin() {
-    const youWin = document.querySelector(".state-nodisplay");
-    youWin.classList.remove("state-nodisplay");
+    if(document.querySelector(".state-nodisplay") != null){
+        const youWin = document.querySelector(".state-nodisplay");
+        youWin.classList.remove("state-nodisplay");
 
-    const you = document.createElement("div");
-    you.textContent = "YOU";/*palabra[i].toUpperCase()*/
+        const you = document.createElement("div");
+        you.textContent = "YOU";/*palabra[i].toUpperCase()*/
 
-    const win = document.createElement("div");
-    win.textContent = "WIN!";/*palabra[i].toUpperCase()*/
+        const win = document.createElement("div");
+        win.textContent = "WIN!";/*palabra[i].toUpperCase()*/
 
-    youWin.append(you);
-    youWin.append(win);
+        youWin.append(you);
+        youWin.append(win);
 
-    youWin.classList.add("stateAnimation", "youWin");
-    window.endgame = true;
-    play("audio/win.mp3")
+        youWin.classList.add("stateAnimation", "youWin");
+        window.endgame = true;
+        play("audio/win.mp3")
+    }
     return;
 }
 
@@ -361,7 +365,8 @@ modo.addEventListener('click', function () {
         this.src = "./img/sun.png"
         let intento_back = window.intento
         window.intento = 0
-        for (let i = 0; i <= intento_back; i++) {
+        console.log(intento_back)
+        for (let i = 0; i < intento_back; i++) {
             drawGame()
         }
         const logo = document.querySelector('#logo');
@@ -380,7 +385,7 @@ modo.addEventListener('click', function () {
         this.src = "./img/moon.png"
         let intento_back = window.intento
         window.intento = 0
-        for (let i = 0; i <= intento_back; i++) {
+        for (let i = 0; i < intento_back; i++) {
             drawGame()
         }
         const logo = document.querySelector('#logo');
