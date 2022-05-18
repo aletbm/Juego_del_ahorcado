@@ -366,7 +366,7 @@ modo.addEventListener('click', function () {
         let intento_back = window.intento
         window.intento = 0
         console.log(intento_back)
-        for (let i = 0; i < intento_back; i++) {
+        for (let i = 0; i <= intento_back; i++) {
             drawGame()
         }
         const logo = document.querySelector('#logo');
@@ -385,7 +385,7 @@ modo.addEventListener('click', function () {
         this.src = "./img/moon.png"
         let intento_back = window.intento
         window.intento = 0
-        for (let i = 0; i < intento_back; i++) {
+        for (let i = 0; i <= intento_back; i++) {
             drawGame()
         }
         const logo = document.querySelector('#logo');
