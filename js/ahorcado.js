@@ -2,17 +2,17 @@ var intento = 0
 var endgame = false
 var acertados = 0
 var modoOscuro = false
-var listaPalabras = ["accidental", "juvenil", "embriagante", "vibrador", 
-                    "usable", "suciedad", "salida", "gobernador", "emitir", 
-                    "secuestro", "inverso", "feroz"];
+var listaPalabras = ["juvenil", "usable", "suciedad", "salida", "emitir", "inverso", "feroz",
+    "atico", "oracion", "audaz", "buldog", "abrasivo", "fraccion", "odio", "sabueso",
+    "cero", "curacion", "genetico", "colera", "esencial"];
 
 function play(dir) {
     var audio = new Audio(dir);
     audio.play();
-    }
+}
 
 function teclado(btn, palabra) {
-    if(window.endgame == false){
+    if (window.endgame == false) {
         let encontrado = false;
         let letra = btn.textContent
         for (let i = 0; i < palabra.length; i++) {
@@ -37,19 +37,19 @@ function teclado(btn, palabra) {
             drawGame();
         }
 
-        if(window.acertados == palabra.length){
+        if (window.acertados == palabra.length) {
             youWin();
         }
     }
     return;
 }
 
-function initGame(){
+function initGame() {
     let indice = Math.floor(Math.random() * window.listaPalabras.length);
     let palabra = window.listaPalabras[indice];
-    
+
     drawGame()
-    
+
     let correctas = document.querySelector(".correctas");
     for (let i = 0; i < palabra.length; i++) {
         const letra = document.createElement("div");
@@ -58,11 +58,11 @@ function initGame(){
         letra.textContent = "";
         correctas.append(letra);
     }
-    
+
     let teclado_f1 = "qwertyuiop";
     let teclado_f2 = "asdfghjklñ";
     let teclado_f3 = "zxcvbnm";
-    
+
     let f1 = document.querySelector(".fila1");
     for (let i = 0; i < teclado_f1.length; i++) {
         const tecla = document.createElement("button");
@@ -72,7 +72,7 @@ function initGame(){
         tecla.addEventListener("click", function () { teclado(this, palabra); });
         f1.append(tecla);
     }
-    
+
     let f2 = document.querySelector(".fila2");
     for (let i = 0; i < teclado_f2.length; i++) {
         const tecla = document.createElement("button");
@@ -82,7 +82,7 @@ function initGame(){
         tecla.addEventListener("click", function () { teclado(this, palabra); });
         f2.append(tecla);
     }
-    
+
     let f3 = document.querySelector(".fila3");
     for (let i = 0; i < teclado_f3.length; i++) {
         const tecla = document.createElement("button");
@@ -96,15 +96,15 @@ function initGame(){
 }
 
 function removeChilds(nodo) {
-    if ( nodo.hasChildNodes ){
-        while ( nodo.childNodes.length >= 1 ){
-            nodo.removeChild( nodo.firstChild );
+    if (nodo.hasChildNodes) {
+        while (nodo.childNodes.length >= 1) {
+            nodo.removeChild(nodo.firstChild);
         }
     }
     return;
 }
 
-function newGame(){
+function newGame() {
     let pantalla = document.querySelector("canvas");
     let pincel = pantalla.getContext("2d");
     pincel.clearRect(0, 0, pantalla.width, pantalla.height);
@@ -122,7 +122,7 @@ function newGame(){
     let correctas = document.querySelector(".correctas");
     removeChilds(correctas);
 
-    if(document.querySelector(".stateAnimation") != null){
+    if (document.querySelector(".stateAnimation") != null) {
         let gameOver = document.querySelector(".stateAnimation");
         gameOver.classList.remove(".gameOver");
         gameOver.classList.remove(".youWin");
@@ -135,7 +135,7 @@ function newGame(){
     return;
 }
 
-function gameOver(){
+function gameOver() {
     let gameOver = document.querySelector(".state-nodisplay");
     gameOver.classList.remove("state-nodisplay");
 
@@ -147,7 +147,7 @@ function gameOver(){
 
     gameOver.append(game);
     gameOver.append(over);
-    
+
     gameOver.classList.add("stateAnimation", "gameOver")
 
     window.endgame = true;
@@ -155,17 +155,17 @@ function gameOver(){
     return;
 }
 
-function drawGame(){
+function drawGame() {
     let pantalla = document.querySelector("canvas");
     let pincel = pantalla.getContext("2d");
 
     pincel.beginPath();
-    if (window.intento == 0){
+    if (window.intento == 0) {
         // BASE
         pincel.moveTo(355, 350);
         pincel.lineTo(0, 350);
     }
-    if (window.intento == 1){
+    if (window.intento == 1) {
         // COL
         pincel.moveTo(105, 0);
         pincel.lineTo(105, 350);
@@ -174,7 +174,7 @@ function drawGame(){
         pincel.moveTo(75, 350);
         pincel.lineTo(105, 320);
     }
-    if (window.intento == 2){
+    if (window.intento == 2) {
         // VIGA
         pincel.moveTo(155, 0);
         pincel.lineTo(105, 50);
@@ -182,64 +182,64 @@ function drawGame(){
         pincel.lineTo(103, 3);
     }
 
-    if (window.intento == 3){
+    if (window.intento == 3) {
         // CUERDA
         pincel.moveTo(255, 80);
         pincel.lineTo(255, 0);
     }
-    
-    if (window.intento == 4){
+
+    if (window.intento == 4) {
         // CABEZA
         pincel.moveTo(255, 50);
         pincel.arc(255, 110, 30, -Math.PI / 2, Math.PI * 3 / 2, true);
     }
-    if (window.intento == 5){
+    if (window.intento == 5) {
         // TORSO
         pincel.moveTo(255, 225);
         pincel.lineTo(255, 140);
     }
-    
-    if (window.intento == 6){
+
+    if (window.intento == 6) {
         // BR_I
         pincel.moveTo(275, 200);
         pincel.lineTo(255, 150);
     }
-    
-    if (window.intento == 7){
+
+    if (window.intento == 7) {
         // BR_D
         pincel.moveTo(235, 200);
         pincel.lineTo(255, 150);
     }
-    
-    if (window.intento == 8){
+
+    if (window.intento == 8) {
         // PI_I
         pincel.moveTo(275, 270);
         pincel.lineTo(255, 225);
     }
-    
-    if (window.intento == 9){
+
+    if (window.intento == 9) {
         // PI_D
         pincel.moveTo(235, 270);
         pincel.lineTo(255, 225);
         gameOver();
     }
-    
+
     pincel.lineWidth = 6;
     var r = document.querySelector(':root');
     var rs = getComputedStyle(r);
-    if(window.modoOscuro == false){
+    if (window.modoOscuro == false) {
         pincel.strokeStyle = rs.getPropertyValue('--color5');
     }
-    else{
-        pincel.strokeStyle = rs.getPropertyValue('--color1'); 
+    else {
+        pincel.strokeStyle = rs.getPropertyValue('--color1');
     }
     pincel.stroke();
     window.intento += 1;
     return;
-    
+
 }
 
-function youWin(){
+function youWin() {
     const youWin = document.querySelector(".state-nodisplay");
     youWin.classList.remove("state-nodisplay");
 
@@ -251,7 +251,7 @@ function youWin(){
 
     youWin.append(you);
     youWin.append(win);
-    
+
     youWin.classList.add("stateAnimation", "youWin");
     window.endgame = true;
     play("audio/win.mp3")
@@ -260,26 +260,26 @@ function youWin(){
 
 document.addEventListener('keydown', (event) => {
     let name = event.key;
-    if(document.getElementById(name.toLowerCase()) != null){
+    if (document.getElementById(name.toLowerCase()) != null) {
         document.getElementById(name.toLowerCase()).click()
     }
 }, false);
 
 const newgame = document.querySelector('#new');
 const des = document.querySelector('#des');
-newgame.addEventListener( 'click', function() {newGame();} );
-des.addEventListener( 'click', function() {
+newgame.addEventListener('click', function () { newGame(); });
+des.addEventListener('click', function () {
     const menu = document.querySelector('#menu');
     const juego = document.querySelector('#juego');
     menu.classList.remove("no-display");
     menu.classList.add("menu");
     juego.classList.remove("juego");
     juego.classList.add("no-display");
-} );
+});
 
 const start = document.querySelector('#start');
 const add = document.querySelector('#add');
-start.addEventListener( 'click', function() {
+start.addEventListener('click', function () {
     const menu = document.querySelector('#menu');
     const juego = document.querySelector('#juego');
     menu.classList.remove("menu");
@@ -287,30 +287,31 @@ start.addEventListener( 'click', function() {
     juego.classList.remove("no-display");
     juego.classList.add("juego");
 
-    newGame();} );
+    newGame();
+});
 
-add.addEventListener( 'click', function() {
+add.addEventListener('click', function () {
     const menu = document.querySelector('#menu');
     const addWord = document.querySelector('#addWord');
     menu.classList.remove("menu");
     menu.classList.add("no-display");
     addWord.classList.remove("no-display");
     addWord.classList.add("addWord");
-} );
+});
 
 const save = document.querySelector('#save');
 const cancel = document.querySelector('#cancel');
-save.addEventListener( 'click', function() {
+save.addEventListener('click', function () {
     let textarea = document.querySelector("#texto");
     const texto = textarea.value.toUpperCase();
     let error = false
-    if (texto != "" && texto.length <= 8){
-        for(var i=0; i < texto.length; i++){
-            if(((texto[i] < 'A') || (texto[i] > 'Z')) && (texto[i] != ' ')){
+    if (texto != "" && texto.length <= 8) {
+        for (var i = 0; i < texto.length; i++) {
+            if (((texto[i] < 'A') || (texto[i] > 'Z')) && (texto[i] != ' ')) {
                 error = true
             }
         }
-        if(error == false){
+        if (error == false) {
             window.listaPalabras.push(texto)
             textarea.value = ""
             const addWord = document.querySelector('#addWord');
@@ -321,21 +322,21 @@ save.addEventListener( 'click', function() {
             juego.classList.add("juego");
             newGame();
         }
-        else{
+        else {
             const dialogo = document.querySelector('#dialog');
             dialogo.show()
             dialogo.addEventListener('click', () => dialogo.close());
         }
     }
-    else{
+    else {
         const dialogo = document.querySelector('#dialog2');
         dialogo.show()
         dialogo.addEventListener('click', () => dialogo.close());
     }
-    
-} );
 
-cancel.addEventListener( 'click', function() {
+});
+
+cancel.addEventListener('click', function () {
     let textarea = document.querySelector("#texto");
     textarea.value = ""
     const addWord = document.querySelector('#addWord');
@@ -344,12 +345,12 @@ cancel.addEventListener( 'click', function() {
     addWord.classList.add("no-display");
     menu.classList.remove("no-display");
     menu.classList.add("menu");
-    
-} );
+
+});
 
 const modo = document.querySelector('#modo');
-modo.addEventListener( 'click', function() {
-    if(window.modoOscuro == false){
+modo.addEventListener('click', function () {
+    if (window.modoOscuro == false) {
         let r = document.querySelector(':root');
         r.style.setProperty('--color1', '#A2ABC8');
         r.style.setProperty('--color2', '#6F7488');
@@ -360,7 +361,7 @@ modo.addEventListener( 'click', function() {
         this.src = "./img/sun.png"
         let intento_back = window.intento
         window.intento = 0
-        for(let i = 0; i < intento_back; i++){
+        for (let i = 0; i < intento_back; i++) {
             drawGame()
         }
         const logo = document.querySelector('#logo');
@@ -368,7 +369,7 @@ modo.addEventListener( 'click', function() {
         const exclam = document.querySelector('#exclamacion');
         exclam.style.fill = "#A2ABC8"
     }
-    else{
+    else {
         let r = document.querySelector(':root');
         r.style.setProperty('--color1', '#C7FFED');
         r.style.setProperty('--color2', '#D8FFDB');
@@ -379,7 +380,7 @@ modo.addEventListener( 'click', function() {
         this.src = "./img/moon.png"
         let intento_back = window.intento
         window.intento = 0
-        for(let i = 0; i < intento_back; i++){
+        for (let i = 0; i < intento_back; i++) {
             drawGame()
         }
         const logo = document.querySelector('#logo');
@@ -387,4 +388,4 @@ modo.addEventListener( 'click', function() {
         const exclam = document.querySelector('#exclamacion');
         exclam.style.fill = "#C7FFED"
     }
-} );
+});
