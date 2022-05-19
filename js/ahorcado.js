@@ -373,6 +373,8 @@ modo.addEventListener('click', function () {
         logo.style.fill = "#A2ABC8"
         const exclam = document.querySelector('#exclamacion');
         exclam.style.fill = "#A2ABC8"
+        const text_modo = document.querySelector('#text_modo');
+        text_modo.textContent = "Modo Claro"
     }
     else {
         let r = document.querySelector(':root');
@@ -392,5 +394,7 @@ modo.addEventListener('click', function () {
         logo.style.fill = "#C7FFED"
         const exclam = document.querySelector('#exclamacion');
         exclam.style.fill = "#C7FFED"
+        const text_modo = document.querySelector('#text_modo');
+        text_modo.textContent = "Modo Oscuro"
     }
 });
